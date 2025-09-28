@@ -5,8 +5,6 @@ from starlette import status
 
 from app import app
 
-app.debug = True
-
 
 def test_hello_world() -> None:
     """Return the HTTP greeting from the root route."""
