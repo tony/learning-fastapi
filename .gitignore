@@ -1,6 +1,10 @@
+# macOS
+.DS_Store
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
-*.py[codz]
+*.py[cod]
+>>>>>>> d3cf96b (Second Initial commit (litestar base))
 *$py.class
 
 # C extensions
@@ -8,6 +12,10 @@ __pycache__/
 
 # Distribution / packaging
 .Python
+<<<<<<< HEAD
+=======
+*env*/
+>>>>>>> d3cf96b (Second Initial commit (litestar base))
 build/
 develop-eggs/
 dist/
@@ -19,12 +27,18 @@ lib64/
 parts/
 sdist/
 var/
+<<<<<<< HEAD
 wheels/
 share/python-wheels/
 *.egg-info/
 .installed.cfg
 *.egg
 MANIFEST
+=======
+*.egg-info/
+.installed.cfg
+*.egg
+>>>>>>> d3cf96b (Second Initial commit (litestar base))
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
@@ -39,17 +53,26 @@ pip-delete-this-directory.txt
 # Unit test / coverage reports
 htmlcov/
 .tox/
+<<<<<<< HEAD
 .nox/
+=======
+>>>>>>> d3cf96b (Second Initial commit (litestar base))
 .coverage
 .coverage.*
 .cache
 nosetests.xml
 coverage.xml
 *.cover
+<<<<<<< HEAD
 *.py.cover
 .hypothesis/
 .pytest_cache/
 cover/
+=======
+.hypothesis/
+.mypy_cache/
+.pytest_cache/
+>>>>>>> d3cf96b (Second Initial commit (litestar base))
 
 # Translations
 *.mo
@@ -57,6 +80,7 @@ cover/
 
 # Django stuff:
 *.log
+<<<<<<< HEAD
 local_settings.py
 db.sqlite3
 db.sqlite3-journal
@@ -67,11 +91,14 @@ instance/
 
 # Scrapy stuff:
 .scrapy
+=======
+>>>>>>> d3cf96b (Second Initial commit (litestar base))
 
 # Sphinx documentation
 docs/_build/
 
 # PyBuilder
+<<<<<<< HEAD
 .pybuilder/
 target/
 
@@ -205,3 +232,24 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+=======
+target/
+
+# ipython Notebook
+.ipynb_checkpoints
+
+# editors
+.idea
+.ropeproject
+*.swp
+.vim/
+
+# docs
+doc/_build/
+
+*.lprof
+
+pip-wheel-metadata/
+
+# Monkeytype
+monkeytype.sqlite3
