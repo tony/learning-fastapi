@@ -4,12 +4,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a Python web application using Litestar framework with GraphQL support via Strawberry GraphQL. The project follows modern Python development practices with strict type checking and comprehensive linting.
+This is a Python web application using FastAPI with GraphQL support via Strawberry GraphQL. The project follows modern Python development practices with strict type checking and comprehensive linting.
 
 ## Development Commands
 
 ### Package Management
-- **Install dependencies**: `uv sync --all-extras --dev`
+- **Install dependencies**: `uv sync --all-extras --dev --upgrade`
 - **Add a dependency**: `uv add <package>`
 - **Add a dev dependency**: `uv add --dev <package>`
 
@@ -19,14 +19,15 @@ This is a Python web application using Litestar framework with GraphQL support v
 - **Watch mode (auto-test)**: `uv run pytest-watcher`
 
 ### Code Quality
-- **Run all checks**: `uv run ruff check . && uv run ruff format . --check && uv run mypy .`
+- **Run all checks**: `uv run ruff check --select ALL . --fix --unsafe-fixes --preview --show-fixes; uv run ruff format .`
 - **Lint code**: `uv run ruff check .`
 - **Format code**: `uv run ruff format .`
 - **Type checking**: `uv run mypy .`
 
 ### Running the Application
-- **Development server**: `uv run litestar run --reload`
-- **Production server**: `uv run litestar run`
+- **Development server**: `uv run uvicorn app:app --host 127.0.0.1 --port 8020`
+- **Reload with env override**: `APP_RELOAD=true uv run python -m app.server`
+- **Production server**: `uv run uvicorn app:app --host 127.0.0.1 --port 8020`
 
 ## Architecture
 
@@ -34,12 +35,14 @@ This is a Python web application using Litestar framework with GraphQL support v
 - **src/app/__init__.py**: Main application module containing:
   - REST endpoint at `/` returning "Hello, world!"
   - GraphQL endpoint at `/graphql` with Strawberry GraphQL schema
-  - Litestar application instance configured with route handlers
+  - FastAPI application instance configured with route handlers
+- **src/app/settings.py**: Pydantic settings object (defaults host `127.0.0.1`, port `8020`)
+- **src/app/server.py**: uvicorn launcher that consumes the settings module
 
 ### Key Components
-1. **Litestar Framework**: Modern async Python web framework handling HTTP requests
+1. **FastAPI**: Modern async Python web framework handling HTTP requests
 2. **Strawberry GraphQL**: Type-safe GraphQL implementation using Python type hints
-3. **Testing**: Uses pytest with Litestar's TestClient for integration testing
+3. **Testing**: Uses pytest with FastAPI's TestClient (Starlette) for integration testing
 
 ### Configuration
 - **pyproject.toml**: Central configuration for dependencies, tools, and project metadata

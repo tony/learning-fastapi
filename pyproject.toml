@@ -3,9 +3,9 @@ requires = ["setuptools>=64.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "learning-litestar"
+name = "learning-fastapi"
 version = "0.1.0"
-description = "Learning litestar."
+description = "Learning FastAPI."
 license = { text = "All Rights Reserved" }
 readme = "README.md"
 requires-python = ">=3.12,<4.0"
@@ -13,8 +13,10 @@ authors = [
   {name = "Tony Narlock", email = "tony@git-pull.com"}
 ]
 dependencies = [
-    "litestar[standard]>=2.14.0",
-    "strawberry-graphql[debug-server]>=0.258.0",
+    "fastapi>=0.111.0",
+    "strawberry-graphql[fastapi]>=0.258.0",
+    "uvicorn[standard]>=0.30.0",
+    "pydantic-settings>=2.6.0",
 ]
 
 [tool.setuptools.package-dir]
@@ -30,6 +32,7 @@ dev = [
   "pytest",
   "pytest-rerunfailures",
   "pytest-watcher",
+  "httpx",
   # Lint
   "ruff",
   "mypy",
@@ -41,6 +44,9 @@ strict = true
 python_version = "3.12"
 files = [
   "src/",
+]
+mypy_path = [
+  "typings",
 ]
 
 [tool.ruff]
@@ -86,6 +92,7 @@ convention = "numpy"
 [tool.ruff.lint.per-file-ignores]
 "*/__init__.py" = ["F401"]
 "tests/**/test_*.py" = ["S101"]
+"typings/**/*.pyi" = ["ANN401"]
 
 [tool.pytest.ini_options]
 addopts = "--tb=short --no-header --showlocals --doctest-modules"

@@ -1,11 +1,10 @@
-# Copyright (c) 2024 Tony Narlock
 """Application entrypoints for HTTP and GraphQL routes."""
 
 import strawberry
-from litestar import Litestar, get
-from litestar.di import Provide
+from fastapi import FastAPI
+from fastapi.responses import PlainTextResponse
 from strawberry import Private
-from strawberry.litestar import make_graphql_controller
+from strawberry.fastapi import GraphQLRouter
 
 
 @strawberry.type
@@ -28,22 +27,19 @@ class Query:
 
 schema = strawberry.Schema(Query)
 
-GraphQLController = make_graphql_controller(
+# GraphQL router mounts the schema at /graphql with a lightweight root factory.
+graphql_router = GraphQLRouter(
     schema,
     path="/graphql",
+    root_value_getter=Query,
 )
 
-GraphQLController.dependencies = {
-    **GraphQLController.dependencies,
-    # Query construction is trivial; keep it on the loop, no worker thread needed.
-    "root_value": Provide(Query, sync_to_thread=False),
-}
+app = FastAPI()
 
 
-@get(
+@app.get(
     "/",
-    # Simple string response, tell Litestar it can stay on the event loop.
-    sync_to_thread=False,
+    response_class=PlainTextResponse,
 )
 def hello_world() -> str:
     """Return a greeting for the HTTP route.
@@ -51,9 +47,9 @@ def hello_world() -> str:
     Returns
     -------
     str
-        Plain-text greeting for the Litestar response.
+        Plain-text greeting for the FastAPI response.
     """
     return "Hello, world!"
 
 
-app = Litestar(route_handlers=[hello_world, GraphQLController])
+app.include_router(graphql_router)
