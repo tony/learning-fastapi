@@ -3,7 +3,7 @@
 from fastapi.testclient import TestClient
 from starlette import status
 
-from app import app
+from app.app import app
 
 
 def test_hello_world() -> None:

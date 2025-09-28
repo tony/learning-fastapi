@@ -26,18 +26,20 @@ This is a Python web application using FastAPI with GraphQL support via Strawber
 
 ### Running the Application
 - **Development server**: `uv run uvicorn app:app --host 127.0.0.1 --port 8020`
-- **Reload with env override**: `APP_RELOAD=true uv run python -m app.server`
+- **Reload with env override**: `APP_RELOAD=true uv run python -m app.app`
 - **Production server**: `uv run uvicorn app:app --host 127.0.0.1 --port 8020`
+- **Explicit module path**: `uv run uvicorn app.app:app --host 127.0.0.1 --port 8020`
 
 ## Architecture
 
 ### Application Structure
-- **src/app/__init__.py**: Main application module containing:
+- **src/app/app.py**: Main application module containing:
   - REST endpoint at `/` returning "Hello, world!"
   - GraphQL endpoint at `/graphql` with Strawberry GraphQL schema
   - FastAPI application instance configured with route handlers
+  - `run()` helper and `__main__` entrypoint for uvicorn launches
+- **src/app/__init__.py**: Re-exports `app` and `run` for `uvicorn app:app`
 - **src/app/settings.py**: Pydantic settings object (defaults host `127.0.0.1`, port `8020`)
-- **src/app/server.py**: uvicorn launcher that consumes the settings module
 
 ### Key Components
 1. **FastAPI**: Modern async Python web framework handling HTTP requests

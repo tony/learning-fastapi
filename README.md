@@ -10,5 +10,6 @@ This repository contains a minimal FastAPI application with a REST endpoint and 
 - `uv run mypy` – run strict static type checks
 - `uv run ruff check --select ALL . --fix --unsafe-fixes --preview --show-fixes` – apply lint fixes
 - `uv run ruff format .` – format the codebase
-- `uv run python -m app.server` – alternative launcher using environment overrides
+- `uv run python -m app.app` – alternative launcher using environment overrides
+- `uv run uvicorn app.app:app --host 127.0.0.1 --port 8020` – explicit module path if you prefer
 - Add environment overrides in `.env` (e.g. `APP_PORT=8020`, `APP_RELOAD=true`)
