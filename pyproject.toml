@@ -44,6 +44,7 @@ strict = true
 python_version = "3.12"
 files = [
   "src/",
+  "tests/",
 ]
 mypy_path = [
   "typings",
