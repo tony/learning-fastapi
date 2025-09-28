@@ -123,3 +123,7 @@ Ideas for extending the playground:
 - Wire up a front-end (HTMX, React, etc.) and consume the GraphQL endpoint.
 
 Happy exploring FastAPI and Strawberry!
+
+## License
+
+Released under the [MIT License](./LICENSE).
