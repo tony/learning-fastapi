@@ -104,6 +104,7 @@ testpaths = [
   "src",
   "tests",
 ]
+strict = true
 
 [tool.pytest-watcher]
 now = true
