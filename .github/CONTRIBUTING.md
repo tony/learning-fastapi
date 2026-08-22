@@ -92,7 +92,7 @@ $ uv run pytest tests/test_app.py::test_hello_world
 Watch mode, rerunning on save:
 
 ```console
-$ uv run pytest-watcher
+$ uv run pytest-watcher .
 ```
 
 ## Pull requests
