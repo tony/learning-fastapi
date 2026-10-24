@@ -34,7 +34,7 @@ dev = [
   "pytest-watcher",
   "httpx",
   # Lint
-  "ruff>=0.16.1",
+  "ruff>=0.17.1",
   "mypy",
   "typing-extensions",
 ]
